@@ -1,4 +1,3 @@
-
 public class Player extends MonopolyGame {
 
     // Money, piece , sequence of player
@@ -21,7 +20,7 @@ public class Player extends MonopolyGame {
     // Method for rolling 2 dice, it returns number between 1 and 12.
     private static int dice() {
         int dice = (int) Math.floor(Math.random() * 12);
-        while (dice == 0) {
+        while (dice == 0 || dice == 1) {
             dice = (int) Math.floor(Math.random() * 12);
         }
         return dice;
