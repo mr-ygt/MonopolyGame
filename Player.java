@@ -19,9 +19,9 @@ public class Player extends MonopolyGame {
 
     // Method for rolling 2 dice, it returns number between 1 and 12.
     private static int dice() {
-        int dice = (int) Math.floor(Math.random() * 12);
+        int dice = (int) Math.floor(Math.random() * 13);
         while (dice == 0 || dice == 1) {
-            dice = (int) Math.floor(Math.random() * 12);
+            dice = (int) Math.floor(Math.random() * 13);
         }
         return dice;
     }
