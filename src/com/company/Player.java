@@ -1,6 +1,6 @@
 package com.company;
 
-public class Player {
+public class Player implements Comparable<Player> {
     //these following lines are attributes of player.
     public String name;
     public int turn;
@@ -51,5 +51,10 @@ public class Player {
         System.out.println("Now, it is " + this.name +"'s turn.");
         System.out.println(this.name + " is on " + this.turn + ". turn.");
         System.out.println(this.name + " is currently in Square " + this.piece.position + ".");
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return this.balance - o.balance;
     }
 }
