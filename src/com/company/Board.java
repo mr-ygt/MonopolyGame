@@ -7,6 +7,7 @@ public class Board {
     int numOfTaxSquare;
 
     Square[] squares = new Square[40];
+    String message;
 
     public Board(int goMoney, int numOfTaxSquare, int taxAmount){
         this.addSquare(createGoSquare(goMoney), 1);
@@ -45,6 +46,16 @@ public class Board {
     public Square createEmptySquare(){
         Square square = new Square();
         return square;
+    }
+
+    public Board(String message){
+        this.message = message;
+    }
+
+    // prints the test message
+    public String printMessage(){
+        System.out.println(message);
+        return message;
     }
 
 }

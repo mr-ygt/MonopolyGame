@@ -4,15 +4,14 @@ import org.junit.Test;
 
 import java.util.Scanner;
 
-public class Main {
-    String message;
+public class TestMain {
 
-    public Main() {
-
+    public TestMain() {
+        run();
     }
 
     @Test
-    public static void main(String[] args) {
+    public void run(){
         Scanner scanner = new Scanner(System.in);
         int totPlayer = 0, placesNumber=0;
         String places[];
@@ -43,15 +42,5 @@ public class Main {
         scanner.close();
         //Main main = new Main(totPlayer,places);
         Board board = new Board(5000,100,2);
-    }
-
-    /*public Main(int totalPlayer, String [] places) {
-        Board board = new Board(5000,100,2);
-    }*/
-
-    // prints the test message
-    public String printMessage(){
-        System.out.println(message);
-        return message;
     }
 }
