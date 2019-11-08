@@ -14,6 +14,7 @@ public class Main {
 
     @Test
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         int totPlayer = 0, placesNumber=0;
         String places[];
