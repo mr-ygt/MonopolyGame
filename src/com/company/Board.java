@@ -14,6 +14,7 @@ public class Board {
         this.numOfTaxSquare = numOfTaxSquare;
         this.addSquare(createTaxSquare(taxAmount), numOfTaxSquare);
         this.addSquare(createEmptySquare(), 39-numOfTaxSquare);
+
     }
 
     public void addSquare(Square square, int number){

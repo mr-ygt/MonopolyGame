@@ -42,5 +42,6 @@ public class TestMain {
         scanner.close();
         //Main main = new Main(totPlayer,places);
         Board board = new Board(5000,100,2);
+
     }
 }
