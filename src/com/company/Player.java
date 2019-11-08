@@ -2,10 +2,10 @@ package com.company;
 
 public class Player {
     //these following lines are attributes of player.
-    private String name;
+    public String name;
     public int turn;
-    private int balance;
-    private Piece piece;
+    public int balance;
+    public Piece piece;
     public int twiceCounter = 0;
     public boolean isDouble = false;
 
@@ -20,9 +20,6 @@ public class Player {
         this.piece = piece;
     }
 
-
-
-
     public void reduceBalance(int amount){  //these two methods set the balance.
         balance -= amount;
     }
@@ -33,6 +30,7 @@ public class Player {
     public int move(Piece piece, Dice dice1, Dice dice2){   //this method rolls the dices and moves the piece of player based on result
         int step = this.roll(dice1,dice2);                  //and returns the new position of piece of player.
         this.piece.position += step;
+        this.piece.position = (this.piece.position%40);
         System.out.println(this.name + " is now located in Square " + this.piece.position);
         return piece.position;
     }
@@ -46,7 +44,7 @@ public class Player {
             this.isDouble = true;
         }
         System.out.println("First dice: " + face1 + ", the Second dice: " + face2 + " and the sum is " + (face1 + face2));
-        return face1 + face2;
+        return (face1 + face2);
     }
 
     public void Speak(){
