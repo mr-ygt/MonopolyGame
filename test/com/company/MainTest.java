@@ -1,4 +1,4 @@
-package com.company;
+/*package com.company;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,4 +11,4 @@ public class MainTest {
     public void x() {
 
     }
-}
+}*/

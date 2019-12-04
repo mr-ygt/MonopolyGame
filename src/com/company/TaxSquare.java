@@ -4,8 +4,8 @@ public class TaxSquare extends Square {
 
     int taxAmount;
 
-    public TaxSquare(String name, int taxAmount){
-        super(name);
+    public TaxSquare(String name, int taxAmount, int position){
+        super(name, false, position);
         this.taxAmount = taxAmount;
     }
 
@@ -16,4 +16,8 @@ public class TaxSquare extends Square {
         this.taxAmount = tax;
     }
 
+    @Override
+    public void Speak() {
+
+    }
 }
