@@ -6,9 +6,22 @@ public class Board {
 
     int numOfTaxSquare;
 
+<<<<<<< HEAD
     String[] towns = {"Kasimpasa",  "Dolapdere", "Sultanahmet", "Karakoy", "Sirkeci", "Beyoglu", "Besiktas",
             "Taksim", "Harbiye", "Sisli", "Mecidiyekoy", "Bostanci", "Erenkoy", "Caddebostan" + "Nisantasi",
             "Tesvikiye", "Macka", "Levent", "Etiler", "Bebek", "Tarabya", "Yenikoy", "Sicilya", "NewYork"};
+=======
+    Square[] squares = new Square[40];
+    String message;
+
+    public Board(int goMoney, int numOfTaxSquare, int taxAmount){
+        this.addSquare(createGoSquare(goMoney), 1);
+        this.numOfTaxSquare = numOfTaxSquare;
+        this.addSquare(createTaxSquare(taxAmount), numOfTaxSquare);
+        this.addSquare(createEmptySquare(), 39-numOfTaxSquare);
+
+    }
+>>>>>>> 777f61ce5b18dd5e89774aa0dc779ac85889a275
 
     Square[] squares = new Square[40];
     public Board(int goMoney, int taxAmount){
@@ -53,4 +66,18 @@ int price = 100;
         TownSquare square = new TownSquare(price);
         return square;
     }
+<<<<<<< HEAD
+=======
+
+    public Board(String message){
+        this.message = message;
+    }
+
+    // prints the test message
+    public String printMessage(){
+        System.out.println(message);
+        return message;
+    }
+
+>>>>>>> 777f61ce5b18dd5e89774aa0dc779ac85889a275
 }

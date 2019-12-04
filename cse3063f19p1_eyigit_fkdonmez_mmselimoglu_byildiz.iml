@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="org.scalatestplus:junit-4-12_2.11:3.1.0.0-RC3" level="project" />
+    <orderEntry type="library" name="junit:junit:4.12" level="project" />
   </component>
 </module>
