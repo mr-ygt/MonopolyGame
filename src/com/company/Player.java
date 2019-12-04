@@ -4,7 +4,7 @@ public class Player implements Comparable<Player> {
     //these following lines are attributes of player.
     public String name;
     public int turn;
-    public int balance;
+    Money money;
     public Piece piece;
     public int twiceCounter = 0;
     public boolean isDouble = false;
@@ -13,18 +13,19 @@ public class Player implements Comparable<Player> {
 
     }
 
-    public Player(String name, int turn, int balance, Piece piece){   //this constructor creates new player based on given parameters.
-        this.balance = balance;
+    public Player(String name, int turn, Money money, Piece piece){   //this constructor creates new player based on given parameters.
+        this.money.setMoney(money.getMoney());
         this.turn = turn;
         this.name = name;
         this.piece = piece;
     }
 
-    public void reduceBalance(int amount){  //these two methods set the balance.
-        balance -= amount;
+    //these two methods set the balance.
+    public void reduceBalance(int amount){
+        this.money.substractMoney(amount);
     }
     public void addBalance(int amount){
-        balance += amount;
+        this.money.addMoney(amount);
     }
 
     public int move(Piece piece, Dice dice1, Dice dice2){   //this method rolls the dices and moves the piece of player based on result
@@ -55,6 +56,6 @@ public class Player implements Comparable<Player> {
 
     @Override
     public int compareTo(Player o) {
-        return this.balance - o.balance;
+        return this.money.getMoney() - o.money.getMoney();
     }
 }

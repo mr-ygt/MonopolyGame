@@ -1,19 +1,21 @@
 package com.company;
 
-public class Square {
+public abstract class Square {
 
-    String name = "Empty!";
+    String name;
     int position = 0;
+    boolean purchasable;
 
     public Square(){
 
     }
 
-    public Square(String name){
+    public Square(String name, boolean purchasable, int position){
         this.name = name;
+        this.purchasable = purchasable;
+        this.position = position;
     }
 
-    public void Speak(){
-        System.out.println("Name of the square is: " + this.name);
-    }
+    public abstract void Speak();
+
 }

@@ -5,7 +5,7 @@ public class GoSquare extends Square {
     int goMoney;
 
     public GoSquare(String name, int goMoney){
-        super(name);
+        super(name, false, 0);
         this.goMoney = goMoney;
         this.position = 0;
     }
@@ -17,5 +17,7 @@ public class GoSquare extends Square {
         this.goMoney = goMoney;
     }
 
-
+    public void Speak(){
+        System.out.println("Name of the square is: Start");
+    }
 }
