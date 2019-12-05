@@ -15,7 +15,8 @@ public class Board {
 
     Square[] squares = new Square[40];
     public Board(int goMoney, int taxAmount){
-int price = 100;
+    int price = 100;
+    int index = 0;
         for(int i = 0; i < 40; i++){
             squares[i].purchasable = false;
             if(i == 0)
@@ -30,7 +31,7 @@ int price = 100;
                 squares[i] = new RailRoadSquare();
             }
             else if(i == 7 || i == 22 || i == 36){
-                squares[i] = new LuckyCard();
+                squares[i] = new LuckyCardSquare();
             }
             else if(i == 10){
                 squares[10] = new JailSquare();
@@ -42,19 +43,11 @@ int price = 100;
                 squares[30] = new GoToJailSquare();
             }
             else{
-                squares[i] = createTown(price);
+                squares[i] = new TownSquare(price,towns[index], i);
                 squares[i].purchasable = true;
                 price += 20;
             }
         }
-    }
-
-    public TownSquare createTown(int price){
-        Random rand; //burda random köy üretip dağıtacaz.
-
-
-        TownSquare square = new TownSquare(price);
-        return square;
     }
 
     public Board(String message){

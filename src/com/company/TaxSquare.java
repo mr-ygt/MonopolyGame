@@ -20,4 +20,9 @@ public class TaxSquare extends Square {
     public void Speak() {
 
     }
+
+    @Override
+    public void action(Player player, Board board) {
+
+    }
 }

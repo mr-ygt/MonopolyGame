@@ -2,12 +2,16 @@ package com.company;
 
 import java.util.Random;
 
-public class LuckyCard extends Square {
+public class LuckyCardSquare extends Square {
     @Override
     public void Speak() {
 
     }
 
+    @Override
+    public void action(Player player, Board board) {
+
+    }
 
 
     public void action(){
