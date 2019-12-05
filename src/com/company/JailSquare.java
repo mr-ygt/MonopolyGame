@@ -8,7 +8,7 @@ public class JailSquare extends Square {
 
     @Override
 	public void Speak(){
-        System.out.println("Name of the square is: Jail");
+		System.out.println("Name of the square is: " + getName());
     }
 
 	@Override

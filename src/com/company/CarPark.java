@@ -8,8 +8,7 @@ public class CarPark extends Square {
 
 	@Override
 	public void Speak() {
-		System.out.println("Name of the square is: CarPark");
-
+		System.out.println("Name of the square is: " + getName());
 	}
 
 	@Override

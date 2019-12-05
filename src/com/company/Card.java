@@ -13,24 +13,30 @@ public class Card {
      * type5: goToVacation
      */
 
-    public void getCard(int type){
-        switch(type){
-            case 1:
-                System.out.print("Go to jail!");
+    public Card(int type, String description){
+        this.type = type;
+        this.description = description;
+    }
 
+
+    public void action(Player player, Board board){
+        switch(this.type){
+            case 1:
+                System.out.println(this.description);
+                board.squares[10].action(player, board);
+                player.piece.position = 10;
+                player.reduceBalance(200);
                 break;
             case 2:
-                System.out.print("Add money");
+                System.out.println("Add money");
+                player.addBalance(200);
                 break;
             case 3:
-
+                System.out.println(this.description);
             default:
                 System.out.print("default");
         }
-    }
-
-    public Card(int type){
-        this.type = type;
 
     }
+
 }

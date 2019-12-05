@@ -19,7 +19,7 @@ public class GoSquare extends Square {
 
     @Override
     public void Speak(){
-        System.out.println("Name of the square is: Start");
+        System.out.println("Name of the square is: " + getName());
     }
 
 	@Override
