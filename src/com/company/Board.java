@@ -12,7 +12,8 @@ public class Board {
 
     String message;
 
-
+    Dice dice1 = new Dice();
+    Dice dice2 = new Dice();
     Square[] squares = new Square[40];
     Card[] cards = new Card[10];
     public Board(int goMoney, int taxAmount){

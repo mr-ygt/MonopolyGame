@@ -28,11 +28,18 @@ public class Card {
                 player.reduceBalance(200);
                 break;
             case 2:
-                System.out.println("Add money");
-                player.addBalance(200);
+                System.out.println(this.description);
+                player.addBalance(500);
                 break;
             case 3:
                 System.out.println(this.description);
+                player.reduceBalance(250);
+            case 4:
+                System.out.println(this.description);
+                player.move(player.piece, board.dice1, board.dice2);
+            case 5:
+                System.out.println(this.description);
+                //vacation.
             default:
                 System.out.print("default");
         }
