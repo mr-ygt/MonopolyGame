@@ -1,4 +1,3 @@
-
 public class Money {
 
 	private double money;
@@ -17,7 +16,7 @@ public class Money {
 		return money;
 	}
 
-	public void setMoneyAmount(double money) {
+	public void setMoney(double money) {
 		this.money = money;
 	}
 
