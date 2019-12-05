@@ -37,6 +37,7 @@ public class Board {
             }
             else if(i == 5 || i == 15 || i == 25 || i == 35){
                 squares[i] = new RailRoadSquare("Rail Road Square", true, i, price, price/2);
+                price += 20;
             }
             else if(i == 7 || i == 22 || i == 36){
                 squares[i] = new LuckyCardSquare();
