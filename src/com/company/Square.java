@@ -4,7 +4,8 @@ public abstract class Square {
 
     String name;
     int position = 0;
-    boolean purchasable;
+    Player owner;
+	boolean purchasable;
 
     public Square(){
 
@@ -16,7 +17,20 @@ public abstract class Square {
         this.position = position;
     }
 
-    public abstract void Speak();
+    public String getName() {
+		return name;
+	}
+
+    public Player getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Player owner) {
+		this.owner = owner;
+	}
+
+	public abstract void Speak();
+
     public abstract void action(Player player, Board board);
 
 }
