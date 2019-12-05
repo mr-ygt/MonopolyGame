@@ -58,4 +58,8 @@ public class Player implements Comparable<Player> {
     public int compareTo(Player o) {
         return this.money.getMoney() - o.money.getMoney();
     }
+    
+    public Money getMoney() {
+		return money;
+	}
 }
