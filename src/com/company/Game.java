@@ -28,7 +28,7 @@ public class Game {
     String[] playernames = {"Vito",  "Santino", "Michael", "Tom Hagen", "Fredo", "Clemenza", "Luca Brasi", "Vincent Mancini"};
     String[] pieces = {"Handgun", "Cigar", "Horse Head", "Alfa Romeo", "Cadillac", "Knife", "Fedora Hat", "Wineglass"};
 
-int number;
+    int number;
     public void play(){
         Scanner input = new Scanner(System.in);
         boolean flag = false;
@@ -181,8 +181,6 @@ int number;
                     numOfPlayer--;
                 }
             }
-
-
 
             if(balances[1].money.getMoney() < -2000){
                 System.exit(1);

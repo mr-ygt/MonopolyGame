@@ -17,5 +17,6 @@ public abstract class Square {
     }
 
     public abstract void Speak();
+    public abstract void action(Player player, Board board);
 
 }
