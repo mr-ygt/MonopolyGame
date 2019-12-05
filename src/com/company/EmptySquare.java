@@ -9,7 +9,7 @@ public class EmptySquare extends Square {
 	@Override
     public void Speak() {
     	//BU SQUARE ISMI DEGISMELI
-    	System.out.println("Name of the square is: Empty");
+		System.out.println("Name of the square is: " + getName());
     }
 
 

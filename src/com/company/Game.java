@@ -57,7 +57,7 @@ public class Game {
                 System.out.print("Wrong input! Please enter an integer: ");
                 flag = true;
             }else{
-                money.setMoney(input.nextInt());
+                money.setAmount(input.nextInt());
                 flag = false;
             }
         }while(flag);
@@ -107,7 +107,7 @@ public class Game {
         this.numOfPlayer = numOfPlayer;
         inGamePlayers = numOfPlayer; // **************** //
         this.cycle = 0;
-        this.startMoney = money.getMoney();
+        this.startMoney = money.getAmount();
 
         Player[] players = new Player[numOfPlayer];
         Board board = new Board(goMoney, taxAmount);
@@ -149,16 +149,16 @@ public class Game {
                 else{
                     board.squares[players[i].piece.position].Speak();
                 }
-                System.out.println("Current balance of " + players[i].name + " is " + players[i].money.getMoney() + "$");
+                System.out.println("Current balance of " + players[i].name + " is " + players[i].money.getAmount() + "$");
             }
 
             Arrays.sort(balances);
             for(i = numOfPlayer-1; i >= 0; i--){
-                System.out.println(balances[i].name + ": " + balances[i].money.getMoney());
+                System.out.println(balances[i].name + ": " + balances[i].money.getAmount());
             }
 
             for(i = 0; i < numOfPlayer; i++){
-                if(players[i].money.getMoney() < 0){
+                if(players[i].money.getAmount() < 0){
                     System.out.println(players[i].name + " is disqualified!");
                     number = i;
                     for (int j = (i+1); j < numOfPlayer; j++){
@@ -182,7 +182,7 @@ public class Game {
                 }
             }
 
-            if(balances[1].money.getMoney() < -2000){
+            if(balances[1].money.getAmount() < -2000){
                 System.exit(1);
             }
 

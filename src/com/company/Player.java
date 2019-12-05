@@ -8,21 +8,29 @@ public class Player implements Comparable<Player> {
     public Piece piece;
     public int twiceCounter = 0;
     public boolean isDouble = false;
+    public int balance;
 
     public Player(){
 
     }
 
     public Player(String name, int turn, Money money, Piece piece){   //this constructor creates new player based on given parameters.
-        this.money.setMoney(money.getMoney());
+        this.money.setAmount(money.getAmount());
         this.turn = turn;
         this.name = name;
         this.piece = piece;
     }
+    public void getCard(Card card, Board board){
+        int type = card.type;
+        String description = card.description;
+        card.action(this, board);
 
+
+
+    }
     //these two methods set the balance.
     public void reduceBalance(int amount){
-        this.money.substractMoney(amount);
+        this.money.subtractMoney(amount);
     }
     public void addBalance(int amount){
         this.money.addMoney(amount);
@@ -56,9 +64,9 @@ public class Player implements Comparable<Player> {
 
     @Override
     public int compareTo(Player o) {
-        return this.money.getMoney() - o.money.getMoney();
+        return this.money.getAmount() - o.money.getAmount();
     }
-    
+    public String getName(){return name;}
     public Money getMoney() {
 		return money;
 	}

@@ -1,33 +1,33 @@
 package com.company;
 
 public class Money {
-    int money;
+    int amount;
 
     public Money() {
         this(0);
     }
 
-    public Money(int money) {
-        this.money = money;
+    public Money(int amount) {
+        this.amount = amount;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
-    public int getMoney() {
-        return money;
+    public int getAmount() {
+        return amount;
     }
 
     public void addMoney(int amount) {
-        money += amount;
+        this.amount += amount;
     }
 
-    public void substractMoney(int amount) {
-        money -= amount;
+    public void subtractMoney(int amount) {
+        this.amount -= amount;
     }
 
     public boolean isBrokeOut() {
-        return money < 0;
+        return amount < 0;
     }
 }
