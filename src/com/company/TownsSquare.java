@@ -1,3 +1,4 @@
+package com.company;
 public class TownsSquare extends Square {
 
 	int price;
@@ -20,7 +21,7 @@ public class TownsSquare extends Square {
 
 		if (owner== null){
 			System.out.println("There is no owner of this " + getName());
-			if (player.getMoney().money >= price){
+			if (player.getMoney().amount >= price){
 				Dice dice2 = new Dice();
 				int face2 = (dice2.rand.nextInt(6) + 1);
 				if(face2>=4){
@@ -40,13 +41,13 @@ public class TownsSquare extends Square {
 		}
 
 		else{
-			if(owner!=player){
+			if(board.squares[player.piece.position].owner != player){
 				System.out.println(player.getName() + " paid $" + rent + " rent to owner " + board.squares[player.piece.position].owner.getName() + ".");
 				player.reduceBalance(rent);
 				board.squares[player.piece.position].owner.addBalance(rent);
 			}
 
-			else if(owner == player){
+			else if(board.squares[player.piece.position].owner == player){
 			System.out.println(player.getName() + " is the owner of this " + getName() );
 			}
 
@@ -54,4 +55,3 @@ public class TownsSquare extends Square {
 	}
 }
 
-}

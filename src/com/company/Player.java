@@ -24,9 +24,6 @@ public class Player implements Comparable<Player> {
         int type = card.type;
         String description = card.description;
         card.action(this, board);
-
-
-
     }
     //these two methods set the balance.
     public void reduceBalance(int amount){
