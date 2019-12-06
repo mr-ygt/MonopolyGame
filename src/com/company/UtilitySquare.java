@@ -20,12 +20,6 @@ public class UtilitySquare extends Square {
 	public void action(Player player, Board board) {
 		Speak();
 
-		if(owner.getUtility() == 2){
-			rent = 100;
-		}
-		else if(owner.getUtility() == 1){
-			this.rent = 20;
-		}
 
 		if (owner== null){
 			System.out.println("There is no owner of this " + getName());
@@ -50,6 +44,12 @@ public class UtilitySquare extends Square {
 		}
 
 		else{
+			if(owner.getUtility() == 2){
+				rent = 100;
+			}
+			else if(owner.getUtility() == 1){
+				this.rent = 20;
+			}
 			if(owner != player){
 				System.out.println(player.getName() + " paid $" + rent + " rent to owner " + owner.getName() + ".");
 				player.reduceBalance(rent);

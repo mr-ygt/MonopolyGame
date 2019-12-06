@@ -7,7 +7,6 @@ public class Game {
     int numOfPlayer;
     public int inGamePlayers;
     public int cycle = 1;
-    int startMoney;
 
     public Game(){
 
@@ -24,7 +23,7 @@ public class Game {
         }
     }
 
-    String[] playernames = {"Vito",  "Santino", "Michael", "Tom Hagen", "Fredo", "Clemenza", "Luca Brasi", "Vincent Mancini"};
+    String[] playerNames = {"Vito",  "Santino", "Michael", "Tom Hagen", "Fredo", "Clemenza", "Luca Brasi", "Vincent Mancini"};
     String[] pieces = {"Handgun", "Cigar", "Horse Head", "Alfa Romeo", "Cadillac", "Knife", "Fedora Hat", "Wineglass"};
 
     int number;
@@ -32,7 +31,7 @@ public class Game {
         Scanner input;
         boolean flag;
         int numOfPlayer= 0, goMoney = 0, taxAmount = 0, numOfDice = 0;
-        Money money = new Money();
+        Money startMoney = new Money();
         System.out.print("Enter the number of player (2-8): ");
         do{
             input = new Scanner(System.in);
@@ -56,7 +55,7 @@ public class Game {
                 System.out.print("Wrong input! Please enter an integer: ");
                 flag = true;
             }else{
-                money.setAmount(input.nextInt());
+                startMoney.setAmount(input.nextInt());
                 flag = false;
             }
         }while(flag);
@@ -118,24 +117,19 @@ public class Game {
 
         this.numOfPlayer = numOfPlayer;
         inGamePlayers = numOfPlayer; // **************** //
-        this.cycle = 0;
-        this.startMoney = money.getAmount();
+        cycle = 1;
 
         Player[] players = new Player[numOfPlayer];
-        Board board = new Board(goMoney, taxAmount, numOfDice);
         Player[] balances = new Player[numOfPlayer];
+        Board board = new Board(goMoney, taxAmount, numOfDice);
 
-        Randomize(playernames);
+        Randomize(playerNames);
         Randomize(pieces);
         //Randomize(board.cards); it will work on next step.
-/*
-        Dice dice1 = new Dice();
-        Dice dice2 = new Dice();*/
 
-        int i;
-        for(i = 0; i < numOfPlayer; i++){
+        for(int i = 0; i < numOfPlayer; i++){
             Piece piece = new Piece(0, pieces[i]);
-            Player player = new Player(playernames[i], i + 1, money, piece);
+            Player player = new Player(playerNames[i], i + 1, startMoney, piece);
             players[i] = player;
             balances[i] = player;
         }
@@ -145,7 +139,7 @@ public class Game {
         System.out.println("============================");
 
         while(inGamePlayers > 1){
-            for(i = 0; i < numOfPlayer; i++){
+            for(int i = 0; i < numOfPlayer; i++){
                 System.out.print("Cycle -> " + cycle + " | ");
                 players[i].Speak();
                 board.squares[players[i].piece.position].Speak();
@@ -153,7 +147,8 @@ public class Game {
                 //rolling dice and move the piece of player on turn.
                 players[i].piece.position = players[i].move(players[i].piece, numOfDice);
 
-
+                board.squares[players[i].piece.position].action(players[i], board);
+                /*
                 if(board.squares[players[i].piece.position].getName() == "Tax Square"){
                     board.squares[players[i].piece.position].Speak();
                     System.out.println("So, " + players[i].name + " has to give " + taxAmount + "$ for tax");
@@ -166,44 +161,48 @@ public class Game {
                 }
                 else{
                     board.squares[players[i].piece.position].Speak();
-                }
-                System.out.println("Current balance of " + players[i].name + " is " + players[i].money.getAmount() + "$");
+                }*/
+                //System.out.println("Current balance of " + players[i].name + " is " + players[i].money.getAmount() + "$");
             }
 
             Arrays.sort(balances);
-            for(i = numOfPlayer-1; i >= 0; i--){
+            for(int i = numOfPlayer-1; i >= 0; i--){
                 System.out.println(balances[i].name + ": " + balances[i].money.getAmount());
             }
-
-            for(i = 0; i < numOfPlayer; i++){
-                if(players[i].money.getAmount() < 0){
+            for(int i = 0; i < numOfPlayer; i++){
+                if(players[i].isBrokeOut()){
                     System.out.println(players[i].name + " is disqualified!");
                     number = i;
                     for (int j = (i+1); j < numOfPlayer; j++){
                         if(i != (numOfPlayer-1)){
-
+/*
                             for(int k = 0; k < numOfPlayer; k++){
                                     if(players[i] == balances[k]){
+                                        for(int m = (k+1); m < numOfPlayer; m++){
+
+                                        }
                                         //balances[k] = null;
                                     }
                             }
+*/
                             players[j].turn--;
+                            players[i] = null;
                             players[i] = players[j];
                             players[j] = null;
                             i++;
 
                         }
                     }
-                    i = number;
+                    i = number-1;
                     inGamePlayers--;
                     numOfPlayer--;
                 }
-            }
-
+            }balances = players;
+/*
             if(balances[1].money.getAmount() < -2000){
                 System.exit(1);
             }
-
+*/
 
             System.out.println("");
             cycle++;

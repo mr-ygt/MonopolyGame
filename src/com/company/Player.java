@@ -18,7 +18,7 @@ public class Player implements Comparable<Player> {
     }
 
     public Player(String name, int turn, Money money, Piece piece){   //this constructor creates new player based on given parameters.
-        this.money.setAmount(money.getAmount());
+        this.money = new Money(money.getAmount());
         this.turn = turn;
         this.name = name;
         this.piece = piece;
@@ -63,7 +63,7 @@ public class Player implements Comparable<Player> {
             this.twiceCounter++;
         }
         for(int i = 1; i < faces.length+1; i++){
-            System.out.print("The " + i + ". dice: " + faces[i-1]);
+            System.out.print("The " + i + ". dice: " + faces[i-1] + " ");
             total += faces[i-1];
         }
         System.out.println(" and the sum is " + total);
@@ -76,7 +76,10 @@ public class Player implements Comparable<Player> {
         System.out.println(name + " is on " + turn + ". turn.");
         System.out.println(name + " is currently in Square " + piece.position + ".");
     }
-
+    public boolean isBrokeOut(){
+        if(money.getAmount() < 0) return true;
+        else return false;
+    }
     @Override
     public int compareTo(Player o) {
         return this.money.getAmount() - o.money.getAmount();

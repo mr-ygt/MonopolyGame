@@ -1,7 +1,7 @@
 package com.company;
 
 public class Money {
-    int amount;
+    private int amount;
 
     public Money() {
         this(0);
@@ -25,9 +25,5 @@ public class Money {
 
     public void subtractMoney(int amount) {
         this.amount -= amount;
-    }
-
-    public boolean isBrokeOut() {
-        return amount < 0;
     }
 }

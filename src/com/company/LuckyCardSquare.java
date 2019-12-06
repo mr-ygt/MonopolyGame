@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class LuckyCardSquare extends Square {
 
-    public LuckyCardSquare(){
-
+    public LuckyCardSquare(String name, boolean purchasable, int position){
+        super(name, purchasable, position);
     }
     @Override
     public void Speak() {
