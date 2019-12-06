@@ -5,10 +5,10 @@ public class RailRoadSquare extends Square {
 	int price;
 	int rent;
 
-	public RailRoadSquare(String name, boolean purchasable, int position, int price, int rent) {
-		super(name, true, position);
+	public RailRoadSquare(String name, boolean purchasable, int position, int price) {
+		super(name, purchasable, position);
 		this.price = price;
-		this.rent = rent;
+
 	}
 
 	@Override
@@ -18,16 +18,30 @@ public class RailRoadSquare extends Square {
 
 	@Override
 	public void action(Player player, Board board) {
-		board.squares[player.piece.position].Speak();
+		Speak();
 
-		if (board.squares[player.piece.position].owner== null){
+		if(owner.getUtility() == 1){
+			rent = 25;
+		}
+		else if(owner.getUtility() == 2){
+			rent = 50;
+		}
+		else if(owner.getUtility() == 3){
+			rent = 100;
+		}
+		else if(owner.getUtility() == 4){
+			rent = 150;
+		}
+
+		if (owner== null){
 			System.out.println("There is no owner of this " + getName());
-			if (player.getMoney().amount >= price){
+			if (player.getMoney().getAmount() >= price){
 				Dice dice1 = new Dice();
 				int face1 = (dice1.rand.nextInt(6) + 1);
 				if(face1>=4){
 					System.out.println("Dice Value: "+ face1 + player.getName() + " want to buy " + getName() + " for " + price);
-					board.squares[player.piece.position].owner = player;
+					owner = player;
+					owner.addRailRoad(1);
 					player.reduceBalance(price);
 				}
 				else{
@@ -42,18 +56,18 @@ public class RailRoadSquare extends Square {
 		}
 
 		else{
-			if(board.squares[player.piece.position].owner!=player){
-				System.out.println(player.getName() + " paid $" + rent + " rent to owner " + board.squares[player.piece.position].owner.getName() + ".");
+			if(owner!=player){
+				System.out.println(player.getName() + " paid $" + rent + " rent to owner " + owner.getName() + ".");
 				player.reduceBalance(rent);
-				board.squares[player.piece.position].owner.addBalance(rent);
+				owner.addBalance(rent);
 			}
 
-			else if(board.squares[player.piece.position].owner == player){
+			else if(owner == player){
 			System.out.println(player.getName() + " is the owner of this " + getName() );
 			}
 
 		}
+
+		System.out.println("Current balance of " + player.getName() + " is " + player.getMoney().getAmount() + "$");
 	}
 }
-
-
