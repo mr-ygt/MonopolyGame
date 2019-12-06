@@ -5,7 +5,7 @@ public class GoSquare extends Square {
     int goMoney;
 
     public GoSquare(String name, boolean purchasable, int goMoney){
-        super(name, false, 0);
+        super(name, purchasable, 0);
         this.goMoney = goMoney;
         this.position = 0;
     }
@@ -25,9 +25,10 @@ public class GoSquare extends Square {
 	@Override
 	public void action(Player player, Board board) {
 
-		board.squares[player.piece.position].Speak();
-        System.out.println("So, " + player.name + " earn " + goMoney + "$");
+		Speak();
+        System.out.println("So, " + player.getName() + " earn " + goMoney + "$");
         player.addBalance(goMoney);
 
+        System.out.println("Current balance of " + player.getName() + " is " + player.getMoney().getAmount() + "$");
 	}
 }
