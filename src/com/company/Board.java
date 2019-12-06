@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Board {
 
-    int numOfTaxSquare;
+    int numOfDice;
 
     String[] towns = {"Kasimpasa", "Dolapdere", "Sultanahmet", "Karakoy", "Sirkeci", "Beyoglu", "Besiktas",
             "Taksim", "Harbiye", "Sisli", "Mecidiyekoy", "Bostanci", "Erenkoy", "Caddebostan" + "Nisantasi",
@@ -14,9 +14,18 @@ public class Board {
 
 
     Square[] squares = new Square[40];
-    public Board(int goMoney, int taxAmount){
-    int price = 100;
-    int index = 0;
+    Card[] cards = new Card[10];
+    public Board(int goMoney, int taxAmount, int numOfDices){
+        this.numOfDice = numOfDices;
+        int price = 100;
+        int index = 0;
+        for(int i = 0; i < 10; i++){
+            if(i%5 == 0)    cards[i] = new Card(1, "Go To Jail!");
+            else if(i%5 == 1)   cards[i] = new Card(2, "Add Money: 500$");
+            else if(i%5 == 2)   cards[i] = new Card(3, "Reduce Money: 200$");
+            else if(i%5 == 3)   cards[i] = new Card(4, "Again Roll Dice!");
+            else if(i%5 == 4)   cards[i] = new Card(5, "Go To Vacation!");
+        }
         for(int i = 0; i < 40; i++){
             squares[i].purchasable = false;
             if(i == 0)

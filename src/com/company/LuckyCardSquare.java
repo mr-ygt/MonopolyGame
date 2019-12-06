@@ -3,6 +3,10 @@ package com.company;
 import java.util.Random;
 
 public class LuckyCardSquare extends Square {
+
+    public LuckyCardSquare(){
+
+    }
     @Override
     public void Speak() {
         System.out.println("Name of the square is: " + getName());

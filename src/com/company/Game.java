@@ -8,7 +8,6 @@ public class Game {
     public int inGamePlayers;
     public int cycle = 1;
     int startMoney;
-    int goMoney;
 
     public Game(){
 
@@ -30,9 +29,9 @@ public class Game {
 
     int number;
     public void play(){
-        Scanner input = new Scanner(System.in);
-        boolean flag = false;
-        int numOfPlayer= 0, startMoney = 0, goMoney = 0, numOfTaxSquare = 0, taxAmount = 0, numOfDice = 0;
+        Scanner input;
+        boolean flag;
+        int numOfPlayer= 0, goMoney = 0, taxAmount = 0, numOfDice = 0;
         Money money = new Money();
         System.out.print("Enter the number of player (2-8): ");
         do{
