@@ -2,7 +2,7 @@ package com.company;
 
 public abstract class Square {
 
-    String name;
+    private String name;
     int position = 0;
     Player owner;
 	boolean purchasable;

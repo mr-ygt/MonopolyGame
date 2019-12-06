@@ -16,6 +16,5 @@ public class JailSquare extends Square {
 
 		board.squares[player.piece.position].Speak();
 		System.out.println("So, " + player.name + " can't move ");
-
 	}
 }
