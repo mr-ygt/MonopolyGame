@@ -20,18 +20,7 @@ public class RailRoadSquare extends Square {
 	public void action(Player player, Board board) {
 		Speak();
 
-		if(owner.getUtility() == 1){
-			rent = 25;
-		}
-		else if(owner.getUtility() == 2){
-			rent = 50;
-		}
-		else if(owner.getUtility() == 3){
-			rent = 100;
-		}
-		else if(owner.getUtility() == 4){
-			rent = 150;
-		}
+
 
 		if (owner== null){
 			System.out.println("There is no owner of this " + getName());
@@ -56,6 +45,18 @@ public class RailRoadSquare extends Square {
 		}
 
 		else{
+			if(owner.getRailRoad() == 1){
+				rent = 25;
+			}
+			else if(owner.getRailRoad() == 2){
+				rent = 50;
+			}
+			else if(owner.getRailRoad() == 3){
+				rent = 100;
+			}
+			else if(owner.getRailRoad() == 4){
+				rent = 150;
+			}
 			if(owner!=player){
 				System.out.println(player.getName() + " paid $" + rent + " rent to owner " + owner.getName() + ".");
 				player.reduceBalance(rent);

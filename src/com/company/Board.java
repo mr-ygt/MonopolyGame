@@ -8,7 +8,7 @@ public class Board {
 
     String[] towns = {"Kasimpasa", "Dolapdere", "Sultanahmet", "Karakoy", "Sirkeci", "Beyoglu", "Besiktas",
             "Taksim", "Harbiye", "Sisli", "Mecidiyekoy", "Bostanci", "Erenkoy", "Caddebostan" + "Nisantasi",
-            "Tesvikiye", "Macka", "Levent", "Etiler", "Bebek", "Tarabya", "Yenikoy", "Sicilya", "NewYork"};
+            "Tesvikiye", "Macka", "Levent", "Etiler", "Bebek", "Tarabya", "Yenikoy"};
 
     String message;
 
@@ -27,7 +27,6 @@ public class Board {
             else if(i%5 == 4)   cards[i] = new Card(5, "Go To Vacation!");
         }
         for(int i = 0; i < 40; i++){
-            squares[i].purchasable = false;
             if(i == 0)
                 squares[0] = new GoSquare("Start",false , goMoney);
             else if(i == 2 || i == 17 || i == 33){
@@ -52,7 +51,7 @@ public class Board {
                 squares[i] = new RailRoadSquare("Short Line", true, i, 200);
             }
             else if(i == 7 || i == 22 || i == 36){
-                squares[i] = new LuckyCardSquare();
+                squares[i] = new LuckyCardSquare("Lucky Card Square", false, i);
             }
             else if(i == 10){
                 squares[i] = new JailSquare("Jail", false, i);
@@ -70,7 +69,7 @@ public class Board {
                 squares[i] = new UtilitySquare("Water Works", true, i, 150);
             }
             else{
-                squares[i] = new TownSquare(price,towns[index], i);
+                squares[i] = new TownsSquare(towns[index],true, i, price);
                 squares[i].purchasable = true;
                 price += 20;
             }
