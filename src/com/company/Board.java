@@ -12,11 +12,13 @@ public class Board {
 
     String message;
 
-    Dice dice1 = new Dice();
-    Dice dice2 = new Dice();
+    int numOfDice;
+
     Square[] squares = new Square[40];
     Card[] cards = new Card[10];
-    public Board(int goMoney, int taxAmount){
+    public Board(int goMoney, int taxAmount, int numOfDices){
+        this.numOfDice = numOfDices;
+
         int price = 100;
         int index = 0;
         for(int i = 0; i < 10; i++){
@@ -53,7 +55,7 @@ public class Board {
                 squares[i] = new GoToJailSquare("Go to Jail", false, i);
             }
             else{
-                squares[i] = new TownSquare(price,towns[index], i);
+                squares[i] = new TownsSquare(towns[index], true, i, price, price/2);
                 squares[i].purchasable = true;
                 price += 20;
             }

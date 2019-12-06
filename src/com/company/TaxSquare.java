@@ -5,7 +5,7 @@ public class TaxSquare extends Square {
     int taxAmount;
 
     public TaxSquare(String name, boolean purchasable, int position, int taxAmount) {
-		super(name, false, position);
+		super(name, purchasable, position);
 		this.taxAmount = taxAmount;
 	}
 

@@ -5,7 +5,7 @@ public class TownsSquare extends Square {
 	int rent;
 
 	public TownsSquare(String name, boolean purchasable, int position, int price, int rent) {
-		super(name, true, position);
+		super(name, purchasable, position);
 		this.price = price;
 		this.rent = rent;
 	}

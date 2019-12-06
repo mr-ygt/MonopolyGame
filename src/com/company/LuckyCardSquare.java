@@ -7,14 +7,14 @@ public class LuckyCardSquare extends Square {
     public void Speak() {
         System.out.println("Name of the square is: " + getName());
     }
-    static int cardNumber = 0;
+    static int counter = 0;
     @Override
     public void action(Player player, Board board) {
-        board.squares[player.piece.position].Speak();
-        int type = (int)(Math.random()*4 + 1);
-        Card card = board.cards[cardNumber%10];
+        this.Speak();
+        //int type = (int)(Math.random()*4 + 1);    this will work if cards will random.
+        Card card = board.cards[counter%10];
         player.getCard(card, board);
-        cardNumber++;
+        counter++;
     }
 
 }

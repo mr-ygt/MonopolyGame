@@ -32,7 +32,7 @@ public class Game {
     public void play(){
         Scanner input = new Scanner(System.in);
         boolean flag = false;
-        int numOfPlayer= 0, startMoney = 0, goMoney = 0, numOfTaxSquare = 0, taxAmount = 0;
+        int numOfPlayer= 0, startMoney = 0, goMoney = 0, numOfTaxSquare = 0, taxAmount = 0, numOfDice = 0;
         Money money = new Money();
         System.out.print("Enter the number of player (2-8): ");
         do{
@@ -72,7 +72,7 @@ public class Game {
                 flag = false;
             }
         }while(flag);
-        System.out.print("Enter the number of Tax Square: ");
+      /*  System.out.print("Enter the number of Tax Square: ");
         do{
             input = new Scanner(System.in);
             if(!input.hasNextInt()){
@@ -87,7 +87,7 @@ public class Game {
                     flag = true;
                 }
             }
-        }while(flag);
+        }while(flag);*/
         System.out.print("Enter the amount of money for tax: ");
         do{
             input = new Scanner(System.in);
@@ -100,9 +100,22 @@ public class Game {
             }
         }while(flag);
 
-        System.out.println("\n\nThe Game Has Begun!");
-        System.out.println("\nMonopoly Game: Godfather Edition!\n\n");
-        System.out.println("============================");
+        System.out.print("Enter the number of dice: ");
+        do{
+            input = new Scanner(System.in);
+            if(!input.hasNextInt()){
+                System.out.print("Wrong input! Please enter an integer: ");
+                flag = true;
+            }else{
+                numOfDice = input.nextInt();
+                if(numOfDice >= 2){
+                    flag = false;
+                }else{
+                    System.out.print("Wrong input! Please enter an integer that bigger than 1: ");
+                    flag = true;
+                }
+            }
+        }while(flag);
 
         this.numOfPlayer = numOfPlayer;
         inGamePlayers = numOfPlayer; // **************** //
@@ -110,14 +123,16 @@ public class Game {
         this.startMoney = money.getAmount();
 
         Player[] players = new Player[numOfPlayer];
-        Board board = new Board(goMoney, taxAmount);
+        Board board = new Board(goMoney, taxAmount, numOfDice);
         Player[] balances = new Player[numOfPlayer];
 
         Randomize(playernames);
         Randomize(pieces);
-
+        //Randomize(board.cards); it will work on next step.
+/*
         Dice dice1 = new Dice();
-        Dice dice2 = new Dice();
+        Dice dice2 = new Dice();*/
+
         int i;
         for(i = 0; i < numOfPlayer; i++){
             Piece piece = new Piece(0, pieces[i]);
@@ -126,6 +141,10 @@ public class Game {
             balances[i] = player;
         }
 
+        System.out.println("\n\nThe Game Has Begun!");
+        System.out.println("\nMonopoly Game: Godfather Edition!\n\n");
+        System.out.println("============================");
+
         while(inGamePlayers > 1){
             for(i = 0; i < numOfPlayer; i++){
                 System.out.print("Cycle -> " + cycle + " | ");
@@ -133,15 +152,15 @@ public class Game {
                 board.squares[players[i].piece.position].Speak();
 
                 //rolling dice and move the piece of player on turn.
-                players[i].piece.position = players[i].move(players[i].piece, dice1,dice2);
+                players[i].piece.position = players[i].move(players[i].piece, numOfDice);
 
 
-                if(board.squares[players[i].piece.position].name == "Tax Square"){
+                if(board.squares[players[i].piece.position].getName() == "Tax Square"){
                     board.squares[players[i].piece.position].Speak();
                     System.out.println("So, " + players[i].name + " has to give " + taxAmount + "$ for tax");
                     players[i].reduceBalance(taxAmount);
                 }
-                else if(board.squares[players[i].piece.position].name == "Start"){
+                else if(board.squares[players[i].piece.position].getName() == "Start"){
                     board.squares[players[i].piece.position].Speak();
                     System.out.println("So, " + players[i].name + " earn " + goMoney + "$");
                     players[i].addBalance(goMoney);

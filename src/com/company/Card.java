@@ -23,8 +23,8 @@ public class Card {
         switch(this.type){
             case 1:
                 System.out.println(this.description);
-                board.squares[10].action(player, board);
                 player.piece.position = 10;
+                board.squares[10].action(player, board);
                 player.reduceBalance(200);
                 break;
             case 2:
@@ -34,12 +34,15 @@ public class Card {
             case 3:
                 System.out.println(this.description);
                 player.reduceBalance(250);
+                break;
             case 4:
                 System.out.println(this.description);
-                player.move(player.piece, board.dice1, board.dice2);
+                player.move(player.piece,board.numOfDice);
+                break;
             case 5:
                 System.out.println(this.description);
                 //vacation.
+                break;
             default:
                 System.out.print("default");
         }
