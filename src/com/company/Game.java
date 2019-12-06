@@ -165,7 +165,7 @@ public class Game {
                 //System.out.println("Current balance of " + players[i].name + " is " + players[i].money.getAmount() + "$");
             }
 
-            Arrays.sort(balances);
+            Arrays.sort(balances,Comparator.nullsLast(Comparator.naturalOrder()));
             for(int i = numOfPlayer-1; i >= 0; i--){
                 System.out.println(balances[i].name + ": " + balances[i].money.getAmount());
             }
@@ -198,16 +198,20 @@ public class Game {
                     numOfPlayer--;
                 }
             }balances = players;
+            Player[] balances1 = new Player[numOfPlayer];
+            for(int i = 0; i < numOfPlayer; i++){
+                balances[i] = players[i];
+            }
 /*
             if(balances[1].money.getAmount() < -2000){
                 System.exit(1);
             }
 */
 
-            System.out.println("");
+            System.out.println();
             cycle++;
         }
-        System.out.print("hello");
+        System.out.print("\n==================================\n\nWo Wo Woo!\nWinner is " + players[0].getName() + "\n\n==================================\n\n\n");
     }
 
 }
