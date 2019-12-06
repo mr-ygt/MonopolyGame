@@ -8,6 +8,10 @@ public class Player implements Comparable<Player> {
     public Piece piece;
     public int twiceCounter = 0;
     public boolean isDouble = false;
+    public boolean isInJail = false ;
+
+    private int Utility;
+    private int RailRoad;
 
     public Player(){
 
@@ -59,7 +63,26 @@ public class Player implements Comparable<Player> {
         return this.money.getMoney() - o.money.getMoney();
     }
     
+    public String getName(){
+    	return name;}
+
     public Money getMoney() {
 		return money;
+	}
+
+	public int getUtility() {
+		return this.Utility;
+	}
+
+	public void addUtility(int utility) {
+		this.Utility += utility;
+	}
+
+	public int getRailRoad() {
+		return this.RailRoad;
+	}
+
+	public void addRailRoad(int railRoad) {
+		this.RailRoad += railRoad;
 	}
 }
