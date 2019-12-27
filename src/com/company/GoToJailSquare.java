@@ -17,6 +17,7 @@ public class GoToJailSquare extends Square {
 		Speak();
 		System.out.println(player.getName() + " has to go Jail");
 		player.piece.position = 10 ;
+		player.isInJail = true ;
 
 		System.out.println("Current balance of " + player.getName() + " is " + player.getMoney().getAmount() + "$");
 	}

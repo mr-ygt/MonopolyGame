@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Game {
 
-    int numOfPlayer;
+    public int numOfPlayer;
     public int inGamePlayers;
     public int cycle = 1;
 
@@ -138,40 +138,46 @@ public class Game {
         System.out.println("\nMonopoly Game: Godfather Edition!\n\n");
         System.out.println("============================");
 
+
         while(inGamePlayers > 1){
             for(int i = 0; i < numOfPlayer; i++){
-                System.out.print("Cycle -> " + cycle + " | ");
+                System.out.print("\nCycle -> " + cycle + " | ");
                 players[i].Speak();
                 board.squares[players[i].piece.position].Speak();
 
-                //rolling dice and move the piece of player on turn.
-                players[i].piece.position = players[i].move(players[i].piece, numOfDice);
-
-                board.squares[players[i].piece.position].action(players[i], board);
-                /*
-                if(board.squares[players[i].piece.position].getName() == "Tax Square"){
-                    board.squares[players[i].piece.position].Speak();
-                    System.out.println("So, " + players[i].name + " has to give " + taxAmount + "$ for tax");
-                    players[i].reduceBalance(taxAmount);
-                }
-                else if(board.squares[players[i].piece.position].getName() == "Start"){
-                    board.squares[players[i].piece.position].Speak();
-                    System.out.println("So, " + players[i].name + " earn " + goMoney + "$");
-                    players[i].addBalance(goMoney);
+                if(!players[i].isInJail){
+                    //rolling dice and move the piece of player on turn.
+                    players[i].piece.position = players[i].move(players[i].piece, numOfDice);
+                    board.squares[players[i].piece.position].action(players[i], board);
                 }
                 else{
-                    board.squares[players[i].piece.position].Speak();
-                }*/
-                //System.out.println("Current balance of " + players[i].name + " is " + players[i].money.getAmount() + "$");
+                    System.out.println(players[i].getName() + " is in jail, so can not move in this cycle.");
+                    players[i].inJail ++;
+
+                    if(players[i].getMoney().getAmount() > 200 ){
+                       // board.squares[10].action(players[i],board);
+                        System.out.println(players[i].getName() + " has to pay $200 to get out of jail.");
+                        players[i].isInJail = false ;
+                        players[i].inJail = 0;
+                        players[i].reduceBalance(200);
+                    }
+                    else if (players[i].inJail == 3){
+                        //board.squares[10].action(players[i],board);
+                        players[i].isInJail = false ;
+                        players[i].inJail = 0;
+                    }
+
+                }
+
             }
 
             Arrays.sort(balances,Comparator.nullsLast(Comparator.naturalOrder()));
             for(int i = numOfPlayer-1; i >= 0; i--){
-                System.out.println(balances[i].name + ": " + balances[i].money.getAmount());
+                System.out.println(balances[i].getName() + ": " + balances[i].money.getAmount());
             }
             for(int i = 0; i < numOfPlayer; i++){
                 if(players[i].isBrokeOut()){
-                    System.out.println(players[i].name + " is disqualified!");
+                    System.out.println(players[i].getName() + " is disqualified!");
                     number = i;
                     for (int j = (i+1); j < numOfPlayer; j++){
                         if(i != (numOfPlayer-1)){
@@ -202,13 +208,8 @@ public class Game {
             for(int i = 0; i < numOfPlayer; i++){
                 balances[i] = players[i];
             }
-/*
-            if(balances[1].money.getAmount() < -2000){
-                System.exit(1);
-            }
-*/
 
-            System.out.println();
+            System.out.println("\n**********************************");
             cycle++;
         }
         System.out.print("\n==================================\n\nWo Wo Woo!\nWinner is " + players[0].getName() + "\n\n==================================\n\n\n");

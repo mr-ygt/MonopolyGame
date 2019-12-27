@@ -14,9 +14,22 @@ public class JailSquare extends Square {
 	@Override
 	public void action(Player player, Board board) {
 
-		Speak();
-		System.out.println("So, " + player.getName() + " can't move ");
-		player.isInJail = true;
+    	Speak();
+		//PutInJail(player);
+    	System.out.println(player.getName() + " visits the jail. ");
 		System.out.println("Current balance of " + player.getName() + " is " + player.getMoney().getAmount() + "$");
+
+		/*if(player.isInJail = true){
+			GetOutOfJail(player);
+		}	 */
 	}
+
+	/*public void PutInJail(Player player){
+    	player.isInJail = true;
+	}
+
+	public void GetOutOfJail(Player player){
+		player.isInJail = false;
+		player.inJail = 0;
+	}*/
 }

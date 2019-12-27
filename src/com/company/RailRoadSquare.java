@@ -3,7 +3,7 @@ package com.company;
 public class RailRoadSquare extends Square {
 
 	int price;
-	int rent;
+	private int rent;
 
 	public RailRoadSquare(String name, boolean purchasable, int position, int price) {
 		super(name, purchasable, position);
@@ -22,19 +22,19 @@ public class RailRoadSquare extends Square {
 
 
 
-		if (owner== null){
+		if (getOwner() == null){
 			System.out.println("There is no owner of this " + getName());
 			if (player.getMoney().getAmount() >= price){
 				Dice dice1 = new Dice();
 				int face1 = (dice1.rand.nextInt(6) + 1);
 				if(face1>=4){
-					System.out.println("Dice Value: "+ face1 + player.getName() + " want to buy " + getName() + " for " + price);
-					owner = player;
-					owner.addRailRoad(1);
+					System.out.println("Dice Value:" + face1 + " " + player.getName() + " want to buy " + getName() + " for " + price);
+					setOwner(player);
+					getOwner().setRailRoad(1);
 					player.reduceBalance(price);
 				}
 				else{
-					System.out.println(player.getName() + " don't want to buy " + getName());
+					System.out.println("Dice Value:" + face1 + " " + player.getName() + " don't want to buy " + getName());
 				}
 
 			}
@@ -45,25 +45,25 @@ public class RailRoadSquare extends Square {
 		}
 
 		else{
-			if(owner.getRailRoad() == 1){
-				rent = 25;
+			if(getOwner().getRailRoad() == 1){
+				this.rent = 25;
 			}
-			else if(owner.getRailRoad() == 2){
-				rent = 50;
+			else if(getOwner().getRailRoad() == 2){
+				this.rent = 50;
 			}
-			else if(owner.getRailRoad() == 3){
-				rent = 100;
+			else if(getOwner().getRailRoad() == 3){
+				this.rent = 100;
 			}
-			else if(owner.getRailRoad() == 4){
-				rent = 150;
+			else if(getOwner().getRailRoad() == 4){
+				this.rent = 150;
 			}
-			if(owner!=player){
-				System.out.println(player.getName() + " paid $" + rent + " rent to owner " + owner.getName() + ".");
+			if(getOwner() !=player){
+				System.out.println(player.getName() + " paid $" + rent + " rent to " + getOwner().getName() + ".");
 				player.reduceBalance(rent);
-				owner.addBalance(rent);
+				getOwner().addBalance(rent);
 			}
 
-			else if(owner == player){
+			else if(getOwner() == player){
 			System.out.println(player.getName() + " is the owner of this " + getName() );
 			}
 

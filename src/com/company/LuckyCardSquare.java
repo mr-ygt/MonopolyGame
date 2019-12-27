@@ -16,9 +16,11 @@ public class LuckyCardSquare extends Square {
     public void action(Player player, Board board) {
         this.Speak();
         //int type = (int)(Math.random()*4 + 1);    this will work if cards will random.
-        Card card = board.cards[counter%10];
+        Card card = board.LuckyCards[counter%10];
         player.getCard(card, board);
         counter++;
+        System.out.println("Current balance of " + player.getName() + " is " + player.getMoney().getAmount() + "$");
+
     }
 
 }
