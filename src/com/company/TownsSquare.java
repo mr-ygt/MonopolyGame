@@ -35,7 +35,30 @@ public class TownsSquare extends Square {
 				if(face2>=4){
 					System.out.println("Dice Value:" + face2 + " " +  player.getName() + " want to buy " + getName() + " for " + price);
 					setOwner(player);
-					player.setColor1(1);
+
+					switch (this.color) {
+						case "Color1":
+							player.setColor1(1);
+							break;
+						case "Color2":
+							player.setColor1(2);
+							break;
+						case "Color3":
+							player.setColor1(3);
+							break;
+						case "Color4":
+							player.setColor1(4);
+							break;
+						case "Color5":
+							player.setColor1(5);
+							break;
+						case "Color6":
+							player.setColor1(6);
+							break;
+						case "Color7":
+							player.setColor1(7);
+							break;
+					}
 					player.reduceBalance(price);
 				}
 				else{
@@ -51,40 +74,42 @@ public class TownsSquare extends Square {
 
 		else{
 
-			if (this.color.equals("Color1")){
-				if(player.getColor1() == 3){
-					CanBuild = true ;
-				}
-			}
-			else if (this.color.equals("Color2")){
-				if(player.getColor2() == 3){
-					CanBuild = true ;
-				}
-			}
-			else if (this.color.equals("Color3")){
-				if(player.getColor3() == 3){
-					CanBuild = true ;
-				}
-			}
-			else if (this.color.equals("Color4")){
-				if(player.getColor4() == 3){
-					CanBuild = true ;
-				}
-			}
-			else if (this.color.equals("Color5")){
-				if(player.getColor5() == 3){
-					CanBuild = true ;
-				}
-			}
-			else if (this.color.equals("Color6")){
-				if(player.getColor6() == 3){
-					CanBuild = true ;
-				}
-			}
-			else if (this.color.equals("Color7")){
-				if(player.getColor7() == 3){
-					CanBuild = true ;
-				}
+			switch (this.color) {
+				case "Color1":
+					if (player.getColor1() == 3) {
+						CanBuild = true;
+					}
+					break;
+				case "Color2":
+					if (player.getColor2() == 3) {
+						CanBuild = true;
+					}
+					break;
+				case "Color3":
+					if (player.getColor3() == 3) {
+						CanBuild = true;
+					}
+					break;
+				case "Color4":
+					if (player.getColor4() == 3) {
+						CanBuild = true;
+					}
+					break;
+				case "Color5":
+					if (player.getColor5() == 3) {
+						CanBuild = true;
+					}
+					break;
+				case "Color6":
+					if (player.getColor6() == 3) {
+						CanBuild = true;
+					}
+					break;
+				case "Color7":
+					if (player.getColor7() == 3) {
+						CanBuild = true;
+					}
+					break;
 			}
 
 
@@ -102,7 +127,7 @@ public class TownsSquare extends Square {
 					if(face2>=4){
 						System.out.println("Dice Value:" + face2 + " " +  player.getName() + " want to build a hotel here for $" + HotelPrice );
 						player.reduceBalance(HotelPrice);
-						this.rent = 200 ;
+						this.rent = rent*2;
 					}
 				}
 			}

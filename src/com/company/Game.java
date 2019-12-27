@@ -56,7 +56,13 @@ public class Game {
                 flag = true;
             }else{
                 startMoney.setAmount(input.nextInt());
-                flag = false;
+                if(startMoney.getAmount() <= 0){
+                    System.out.print("Opss! Start Money should be bigger than zero!");
+                    flag = true;
+                }
+                else{
+                    flag = false;
+                }
             }
         }while(flag);
         System.out.print("Enter the amount of money each player's token lands on or passes over GO: ");
@@ -67,25 +73,15 @@ public class Game {
                 flag = true;
             }else{
                 goMoney = input.nextInt();
-                flag = false;
-            }
-        }while(flag);
-      /*  System.out.print("Enter the number of Tax Square: ");
-        do{
-            input = new Scanner(System.in);
-            if(!input.hasNextInt()){
-                System.out.print("Wrong input! Please enter an integer: ");
-                flag = true;
-            }else{
-                numOfTaxSquare = input.nextInt();
-                if(numOfTaxSquare >= 0 && numOfTaxSquare <= 39){
-                    flag = false;
-                }else{
-                    System.out.print("Wrong input! Please enter an integer between 0 and 39: ");
+                if(goMoney <= 0){
+                    System.out.print("Opss! Go Money should be bigger than zero!");
                     flag = true;
                 }
+                else{
+                    flag = false;
+                }
             }
-        }while(flag);*/
+        }while(flag);
         System.out.print("Enter the amount of money for tax: ");
         do{
             input = new Scanner(System.in);
@@ -94,7 +90,13 @@ public class Game {
                 flag = true;
             }else{
                 taxAmount = input.nextInt();
-                flag = false;
+                if(taxAmount <= 0){
+                    System.out.print("Opss! Tax Amount should be bigger than zero!");
+                    flag = true;
+                }
+                else{
+                    flag = false;
+                }
             }
         }while(flag);
 
@@ -152,7 +154,7 @@ public class Game {
                 }
                 else{
                     System.out.println(players[i].getName() + " is in jail, so can not move in this cycle.");
-                    players[i].inJail ++;
+                    players[i].inJail++;
 
                     if(players[i].getMoney().getAmount() > 200 ){
                        // board.squares[10].action(players[i],board);
@@ -181,34 +183,21 @@ public class Game {
                     number = i;
                     for (int j = (i+1); j < numOfPlayer; j++){
                         if(i != (numOfPlayer-1)){
-/*
-                            for(int k = 0; k < numOfPlayer; k++){
-                                    if(players[i] == balances[k]){
-                                        for(int m = (k+1); m < numOfPlayer; m++){
-
-                                        }
-                                        //balances[k] = null;
-                                    }
-                            }
-*/
                             players[j].turn--;
                             players[i] = null;
                             players[i] = players[j];
                             players[j] = null;
                             i++;
-
                         }
                     }
                     i = number-1;
                     inGamePlayers--;
                     numOfPlayer--;
                 }
-            }balances = players;
-            Player[] balances1 = new Player[numOfPlayer];
+            }
             for(int i = 0; i < numOfPlayer; i++){
                 balances[i] = players[i];
             }
-
             System.out.println("\n**********************************");
             cycle++;
         }

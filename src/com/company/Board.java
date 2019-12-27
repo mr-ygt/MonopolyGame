@@ -83,11 +83,10 @@ public class Board {
             else if(i == 28){
                 squares[i] = new UtilitySquare("Water Works", true, i, 150);
             }
-            else if(i == 23){//////////////yeniiii
-                squares[i] = new UtilitySquare("Water Works #2", true, i, 150);
+            else if(i == 23){
+                squares[i] = new UtilitySquare("Natural Gas", true, i, 150);
             }
             else {
-
                 squares[i] = new TownsSquare(towns[index],true, i, price, colors[c]);
                 price += 20;
                 index++;
