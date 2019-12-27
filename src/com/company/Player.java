@@ -10,6 +10,7 @@ public class Player implements Comparable<Player> {
     public boolean isDouble = true;
     public boolean isInJail = false ;
 
+    //these 3 lines are properties.(tapu)
     private int Utility;
     private int RailRoad;
     private int color1, color2, color3, color4, color5, color6, color7;

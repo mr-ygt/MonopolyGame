@@ -24,9 +24,7 @@ public class Card {
             case 1:
                 System.out.println(this.description);
                 player.piece.position = 10;
-                player.isInJail = true ;
-                //board.squares[10].action(player, board);
-                //player.reduceBalance(200);
+                player.isInJail = true;
                 break;
             case 2:
                 System.out.println(this.description);

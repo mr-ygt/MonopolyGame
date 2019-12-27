@@ -4,14 +4,14 @@ import java.util.*;
 
 public class Game {
 
-    public int numOfPlayer;
-    public int inGamePlayers;
-    public int cycle = 1;
+    public int numOfPlayer; //number of total players.
+    public int inGamePlayers; //number of players in the game
+    public int cycle = 1;   //this variable keeps how many times game run
 
     public Game(){
 
     }
-
+    //this method randomize the array which is taken as parameter.
     public static void Randomize(String[] arr) {
         Random rand = new Random();
 
@@ -26,10 +26,10 @@ public class Game {
     String[] playerNames = {"Vito",  "Santino", "Michael", "Tom Hagen", "Fredo", "Clemenza", "Luca Brasi", "Vincent Mancini"};
     String[] pieces = {"Handgun", "Cigar", "Horse Head", "Alfa Romeo", "Cadillac", "Knife", "Fedora Hat", "Wineglass"};
 
-    int number;
+    int number; // we used this parameter to keep value of 'i' which used in for loop
     public void play(){
         Scanner input;
-        boolean flag;
+        boolean flag;   //this variable is to check whether the inputs are valid or not
         int numOfPlayer= 0, goMoney = 0, taxAmount = 0, numOfDice = 0;
         Money startMoney = new Money();
         System.out.print("Enter the number of player (2-8): ");
@@ -56,7 +56,13 @@ public class Game {
                 flag = true;
             }else{
                 startMoney.setAmount(input.nextInt());
-                flag = false;
+                if(startMoney.getAmount() <= 0){
+                    System.out.print("Opss! Start Money should be bigger than zero!");
+                    flag = true;
+                }
+                else{
+                    flag = false;
+                }
             }
         }while(flag);
         System.out.print("Enter the amount of money each player's token lands on or passes over GO: ");
@@ -67,25 +73,15 @@ public class Game {
                 flag = true;
             }else{
                 goMoney = input.nextInt();
-                flag = false;
-            }
-        }while(flag);
-      /*  System.out.print("Enter the number of Tax Square: ");
-        do{
-            input = new Scanner(System.in);
-            if(!input.hasNextInt()){
-                System.out.print("Wrong input! Please enter an integer: ");
-                flag = true;
-            }else{
-                numOfTaxSquare = input.nextInt();
-                if(numOfTaxSquare >= 0 && numOfTaxSquare <= 39){
-                    flag = false;
-                }else{
-                    System.out.print("Wrong input! Please enter an integer between 0 and 39: ");
+                if(goMoney <= 0){
+                    System.out.print("Opss! Go Money should be bigger than zero!");
                     flag = true;
                 }
+                else{
+                    flag = false;
+                }
             }
-        }while(flag);*/
+        }while(flag);
         System.out.print("Enter the amount of money for tax: ");
         do{
             input = new Scanner(System.in);
@@ -94,7 +90,13 @@ public class Game {
                 flag = true;
             }else{
                 taxAmount = input.nextInt();
-                flag = false;
+                if(taxAmount <= 0){
+                    System.out.print("Opss! Tax Amount should be bigger than zero!");
+                    flag = true;
+                }
+                else{
+                    flag = false;
+                }
             }
         }while(flag);
 
@@ -116,16 +118,15 @@ public class Game {
         }while(flag);
 
         this.numOfPlayer = numOfPlayer;
-        inGamePlayers = numOfPlayer; // **************** //
+        inGamePlayers = numOfPlayer;
         cycle = 1;
 
         Player[] players = new Player[numOfPlayer];
         Player[] balances = new Player[numOfPlayer];
         Board board = new Board(goMoney, taxAmount, numOfDice);
 
-        Randomize(playerNames);
-        Randomize(pieces);
-        //Randomize(board.cards); it will work on next step.
+        Randomize(playerNames); //we randomized the players, because turns will be random.
+        Randomize(pieces);  //we randomized the pieces, because each piece should be selected randomly by people (:
 
         for(int i = 0; i < numOfPlayer; i++){
             Piece piece = new Piece(0, pieces[i]);
@@ -152,7 +153,7 @@ public class Game {
                 }
                 else{
                     System.out.println(players[i].getName() + " is in jail, so can not move in this cycle.");
-                    players[i].inJail ++;
+                    players[i].inJail++;
 
                     if(players[i].getMoney().getAmount() > 200 ){
                        // board.squares[10].action(players[i],board);
@@ -171,7 +172,7 @@ public class Game {
 
             }
 
-            Arrays.sort(balances,Comparator.nullsLast(Comparator.naturalOrder()));
+            Arrays.sort(balances,Comparator.nullsLast(Comparator.naturalOrder()));  //this method sorts balances because balances should be printed in decrease order
             for(int i = numOfPlayer-1; i >= 0; i--){
                 System.out.println(balances[i].getName() + ": " + balances[i].money.getAmount());
             }
@@ -181,34 +182,19 @@ public class Game {
                     number = i;
                     for (int j = (i+1); j < numOfPlayer; j++){
                         if(i != (numOfPlayer-1)){
-/*
-                            for(int k = 0; k < numOfPlayer; k++){
-                                    if(players[i] == balances[k]){
-                                        for(int m = (k+1); m < numOfPlayer; m++){
-
-                                        }
-                                        //balances[k] = null;
-                                    }
-                            }
-*/
                             players[j].turn--;
                             players[i] = null;
                             players[i] = players[j];
                             players[j] = null;
                             i++;
-
                         }
                     }
                     i = number-1;
                     inGamePlayers--;
                     numOfPlayer--;
                 }
-            }balances = players;
-            Player[] balances1 = new Player[numOfPlayer];
-            for(int i = 0; i < numOfPlayer; i++){
-                balances[i] = players[i];
             }
-
+            if (numOfPlayer >= 0) System.arraycopy(players, 0, balances, 0, numOfPlayer);
             System.out.println("\n**********************************");
             cycle++;
         }
