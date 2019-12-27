@@ -4,8 +4,8 @@ public abstract class Square {
 
     private String name;
     int position = 0;
-    Player owner = null;
-	boolean purchasable;
+    private Player owner = null;
+	private boolean purchasable;
 
     public Square(){
 

@@ -7,25 +7,40 @@ public class Board {
     int numOfDice;
 
     String[] towns = {"Kasimpasa", "Dolapdere", "Sultanahmet", "Karakoy", "Sirkeci", "Beyoglu", "Besiktas",
-            "Taksim", "Harbiye", "Sisli", "Mecidiyekoy", "Bostanci", "Erenkoy", "Caddebostan" + "Nisantasi",
-            "Tesvikiye", "Macka", "Levent", "Etiler", "Bebek", "Tarabya", "Yenikoy"};
+            "Taksim", "Harbiye", "Sisli", "Mecidiyekoy", "Bostanci", "Erenkoy", "Caddebostan" , "Nisantasi",
+            "Tesvikiye", "Macka", "Levent", "Etiler", "Bebek", "Tarabya"};
 
     String message;
 
 
     Square[] squares = new Square[40];
-    Card[] cards = new Card[10];
+    Card[] LuckyCards = new Card[10];
+    Card[] ChestCards = new Card[16];
+    String[] colors = {"Color1", "Color2", "Color3", "Color4","Color5", "Color6", "Color7"};
     public Board(int goMoney, int taxAmount, int numOfDices){
         this.numOfDice = numOfDices;
         int price = 100;
         int index = 0;
+        int c = 0;
         for(int i = 0; i < 10; i++){
-            if(i%5 == 0)    cards[i] = new Card(1, "Go To Jail!");
-            else if(i%5 == 1)   cards[i] = new Card(2, "Add Money: 500$");
-            else if(i%5 == 2)   cards[i] = new Card(3, "Reduce Money: 200$");
-            else if(i%5 == 3)   cards[i] = new Card(4, "Again Roll Dice!");
-            else if(i%5 == 4)   cards[i] = new Card(5, "Go To Vacation!");
+            if(i%5 == 0)    LuckyCards[i] = new Card(1, "Go To Jail!");
+            else if(i%5 == 1)   LuckyCards[i] = new Card(2, "Add Money: 500$");
+            else if(i%5 == 2)   LuckyCards[i] = new Card(3, "Reduce Money: 200$");
+            else if(i%5 == 3)   LuckyCards[i] = new Card(4, "Again Roll Dice!");
+            else if(i%5 == 4)   LuckyCards[i] = new Card(5, "Go To Vacation!");
         }
+
+        for(int j = 0; j < 16; j++){
+            if(j%8 == 0)    ChestCards[j] = new Card(6, "Advance to \"Go\".");
+            else if(j%8 == 1)   ChestCards[j] = new Card(7, "Bank error in your favor.");
+            else if(j%8 == 2)   ChestCards[j] = new Card(8, "Doctor's fees.");
+            else if(j%8 == 3)   ChestCards[j] = new Card(9, "Go to Jail.");
+            else if(j%8 == 4)   ChestCards[j] = new Card(10, "It is your birthday.");
+            else if(j%8 == 5)   ChestCards[j] = new Card(11, "Hospital Fees.");
+            else if(j%8 == 6)   ChestCards[j] = new Card(12, "School fees.");
+            else if(j%8 == 7)   ChestCards[j] = new Card(13, "You inherit $100.");
+        }
+
         for(int i = 0; i < 40; i++){
             if(i == 0)
                 squares[0] = new GoSquare("Start",false , goMoney);
@@ -68,10 +83,18 @@ public class Board {
             else if(i == 28){
                 squares[i] = new UtilitySquare("Water Works", true, i, 150);
             }
-            else{
-                squares[i] = new TownsSquare(towns[index],true, i, price);
-                squares[i].purchasable = true;
+            else if(i == 23){//////////////yeniiii
+                squares[i] = new UtilitySquare("Water Works #2", true, i, 150);
+            }
+            else {
+
+                squares[i] = new TownsSquare(towns[index],true, i, price, colors[c]);
                 price += 20;
+                index++;
+
+                if(index %3 == 0 ){
+                    c++;
+                }
             }
         }
     }

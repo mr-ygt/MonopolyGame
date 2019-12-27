@@ -3,7 +3,7 @@ package com.company;
 public class UtilitySquare extends Square {
 
 	int price;
-	int rent;
+	private int rent;
 
 	public UtilitySquare(String name, boolean purchasable, int position, int price) {
 		super(name, purchasable, position);
@@ -21,19 +21,19 @@ public class UtilitySquare extends Square {
 		Speak();
 
 
-		if (owner== null){
+		if (getOwner() == null){
 			System.out.println("There is no owner of this " + getName());
 			if (player.getMoney().getAmount() >= price){
 				Dice dice1 = new Dice();
 				int face1 = (dice1.rand.nextInt(6) + 1);
 				if(face1>=4){
-					System.out.println("Dice Value: "+ face1 + player.getName() + " want to buy " + getName() + " for " + price);
-					owner = player;
-					owner.addUtility(1);
+					System.out.println("Dice Value:" + face1 + " " + player.getName() + " want to buy " + getName() + " for " + price);
+					setOwner(player);
+					getOwner().setUtility(1);
 					player.reduceBalance(price);
 				}
 				else{
-					System.out.println(player.getName() + " don't want to buy " + getName());
+					System.out.println("Dice Value:" + face1 + " " + player.getName() + " don't want to buy " + getName());
 				}
 
 			}
@@ -44,19 +44,19 @@ public class UtilitySquare extends Square {
 		}
 
 		else{
-			if(owner.getUtility() == 2){
-				rent = 100;
+			if(getOwner().getUtility() == 2){
+				this.rent = 100;
 			}
-			else if(owner.getUtility() == 1){
+			else if(getOwner().getUtility() == 1){
 				this.rent = 20;
 			}
-			if(owner != player){
-				System.out.println(player.getName() + " paid $" + rent + " rent to owner " + owner.getName() + ".");
+			if(getOwner() != player){
+				System.out.println(player.getName() + " paid $" + rent + " rent to " + getOwner().getName() + ".");
 				player.reduceBalance(rent);
-				owner.addBalance(rent);
+				getOwner().addBalance(rent);
 			}
 
-			else if(owner == player){
+			else if(getOwner() == player){
 			System.out.println(player.getName() + " is the owner of this " + getName() );
 			}
 
